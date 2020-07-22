@@ -1,5 +1,8 @@
-import {combineReducers} from "redux";
+import { combineReducers } from "redux";
+import campaignReducer from "./campaignReducer";
 
-const rootReducers = combineReducers({});
+const rootReducers = combineReducers({
+  campaign: campaignReducer
+});
 
 export default rootReducers;
