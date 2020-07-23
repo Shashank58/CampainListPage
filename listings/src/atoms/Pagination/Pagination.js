@@ -6,7 +6,6 @@ import styles from "./Pagination.module.scss";
 const Pagination = (props) => {
   return (
       <div className={styles.container}>
-        <span className={styles.results}>{props.totalItems}</span>
         <FontAwesomeIcon
             onClick={() => props.pageNumberChange(props.selectedPageNumber - 1)}
             className={styles.arrows}

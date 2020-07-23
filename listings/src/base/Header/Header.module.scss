@@ -7,5 +7,16 @@
 
 .navComponent {
   text-decoration: none;
+  color: black;
+  font-weight: bold;
   padding: 2rem;
+  cursor: pointer;
+}
+
+.selectedNavComponent {
+  color: #1899bb;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 2rem;
+  cursor: pointer;
 }

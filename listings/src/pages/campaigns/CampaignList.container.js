@@ -2,9 +2,10 @@ import React, {useEffect, useState} from "react";
 import Header from "../../base/Header";
 import SearchInput from "../../atoms/SearchInput";
 import { useDispatch, useSelector } from "react-redux";
-import { getCampaigns } from "../../actions/campaignActions";
+import {getCampaigns, searchCampaigns} from "../../actions/campaignActions";
 import ItemList from "../../base/ItemList";
 import Pagination from "../../atoms/Pagination";
+import styles from "./CampaignList.module.scss";
 
 const CampaignList = () => {
   const dispatch = useDispatch();
@@ -15,18 +16,26 @@ const CampaignList = () => {
   useEffect(() => {
     dispatch(getCampaigns(pageNumber));
   }, [dispatch, pageNumber]);
+  const searchCampaign = (event) => {
+    if (event.target?.value) {
+      dispatch(searchCampaigns(event.target.value));
+    } else {
+      dispatch(getCampaigns(pageNumber));
+    }
+  };
   const campaigns = useSelector((state) => state.campaign);
   return (
-      <div>
+      <div className={styles.container}>
         <Header />
-        <SearchInput />
-        <ItemList payload={campaigns.payload?.campaigns} pageNumber={pageNumber} />
-        <Pagination
-            pageNumberChange={onPageNumberChanged}
-            totalItems={campaigns.payload?.totalItems}
-            pages={campaigns.payload?.pages}
-            selectedPageNumber={pageNumber}
-        />
+        <div className={styles.campaignContainer}>
+          <SearchInput searchCampaign={searchCampaign} totalItems={campaigns.payload?.totalItems} />
+          <ItemList payload={campaigns.payload?.campaigns} pageNumber={pageNumber} />
+          <Pagination
+              pageNumberChange={onPageNumberChanged}
+              pages={campaigns.payload?.pages}
+              selectedPageNumber={pageNumber}
+          />
+        </div>
       </div>
   );
 }

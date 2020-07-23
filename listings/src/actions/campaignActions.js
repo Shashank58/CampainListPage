@@ -23,3 +23,17 @@ export const deleteCampaign = (pageNumber, index) => {
   campaignData.splice(dataIndex, 1);
   return getCampaigns(pageNumber);
 }
+
+export const searchCampaigns = (searchText) => {
+  const searchedCampaigns = campaignData.filter((data) => data.company.toLowerCase().includes(searchText.toLowerCase()));
+  const totalItems = searchedCampaigns.length;
+  const pages = Array.from({length: Math.ceil(totalItems / 10)}, (x, i) => i + 1);
+  return {
+    type: ActionType.CAMPAIGN_DETAILS,
+    payload: {
+      campaigns: searchedCampaigns.slice(0, 10),
+      totalItems: totalItems + " items",
+      pages,
+    }
+  }
+}

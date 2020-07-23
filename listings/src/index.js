@@ -9,6 +9,7 @@ import './index.css';
 import EmployeeList from './pages/employee';
 import * as serviceWorker from './serviceWorker';
 import CampaignList from "./pages/campaigns";
+import Modal from "./pages/Modal";
 
 const store = createStore(rootReducers, applyMiddleware(thunk));
 
@@ -20,6 +21,7 @@ ReactDOM.render(
             <Redirect exact from="/" to="/campaign"/>
             <Route path="/campaign" component={CampaignList} />
             <Route path="/employee" component={EmployeeList} />
+            <Route exact path="/modal/:id" component={Modal} />
           </Switch>
         </Router>
       </React.StrictMode>
