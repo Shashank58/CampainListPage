@@ -1,13 +1,22 @@
-import React, { Fragment } from "react";
+import React from "react";
 import CampaignItem from "../../atoms/CampaignItem";
+import styles from "./ItemList.module.scss";
+
+const header = {
+  company: "Company",
+  type: "Type",
+  name: "Name",
+  action: "Actions"
+}
 
 const ItemList = (props) => {
-  if (props.payload && props.payload.length) {
-    console.log("Payload at Item List", props.payload);
+  const { payload, pageNumber } = props;
+  if (payload && payload.length) {
     return (
-        <Fragment>
-          {props.payload.map((item) => <CampaignItem key={item['_id']} {...item} />)}
-        </Fragment>
+        <table className={styles.container}>
+          <CampaignItem type={"Heading"} data={header}/>
+          {payload.map((item, index) => <CampaignItem index={index} pageNumber={pageNumber} key={item['_id']} type={"Data"} data={item}/>)}
+        </table>
     );
   }
   return null;

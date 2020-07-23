@@ -1,0 +1,44 @@
+.container {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.results {
+  margin-right: 2rem;
+  color: grey;
+  font-size: small;
+}
+
+.arrows {
+  margin-left: 2rem;
+  margin-right: 2rem;
+  color: grey;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: #61dafb;
+  color: white;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  margin-inline-start: 0;
+  padding-inline-start: 0;
+}
+
+li {
+  border: 1px solid rgba(24, 153, 187, 0.4);
+  padding: 0.4rem 0.8rem;
+  margin-left: 0.4rem;
+  margin-right: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: grey;
+  cursor: pointer;
+}

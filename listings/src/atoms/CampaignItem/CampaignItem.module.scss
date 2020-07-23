@@ -1,0 +1,20 @@
+tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  height: 2.5rem;
+}
+
+th, tr {
+  text-align: start;
+  font-size: 0.8rem;
+}
+
+.company {
+  color: #1899bb;
+  font-weight: bold;
+}
+
+.actionIcon {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}

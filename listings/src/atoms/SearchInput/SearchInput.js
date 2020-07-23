@@ -1,8 +1,11 @@
 import React from "react";
+import styles from "./SearchInput.module.scss";
 
 const SearchInput = () => {
   return (
-      <input placeholder={'Search by campaign name...'} />
+      <div className={styles.inputContainer}>
+        <input className={styles.searchInput} placeholder={'Search by campaign name...'} />
+      </div>
   );
 }
 
