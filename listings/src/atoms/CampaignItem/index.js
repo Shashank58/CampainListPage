@@ -1,1 +1,1 @@
-export { default } from './CampaignItem';
+export { default } from './ItemRow';

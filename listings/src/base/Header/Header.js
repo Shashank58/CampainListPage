@@ -17,7 +17,6 @@ const Header = (props) => {
         <span onClick={() => onRouteChanged("/employee")} className={location === "/employee" ? styles.selectedNavComponent : styles.navComponent}>
           Employees
         </span>
-        {props.children}
       </nav>
   );
 }
