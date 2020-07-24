@@ -7,7 +7,11 @@ const Pagination = (props) => {
   return (
       <div className={styles.container}>
         <FontAwesomeIcon
-            onClick={() => props.pageNumberChange(props.selectedPageNumber - 1)}
+            onClick={() => {
+              if (props.selectedPageNumber > 1) {
+                props.pageNumberChange(props.selectedPageNumber - 1);
+              }
+            }}
             className={styles.arrows}
             icon={faChevronLeft}
         />
@@ -19,7 +23,11 @@ const Pagination = (props) => {
           })}
         </ul>
         <FontAwesomeIcon
-            onClick={() => props.pageNumberChange(props.selectedPageNumber + 1)}
+            onClick={() => {
+              if (props.selectedPageNumber < props.pages?.length) {
+                props.pageNumberChange(props.selectedPageNumber + 1);
+              }
+            }}
             className={styles.arrows}
             icon={faChevronRight}
         />
