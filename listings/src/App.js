@@ -3,7 +3,7 @@ import './App.scss';
 import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
 import CampaignList from "./pages/campaigns";
 import EmployeeList from "./pages/employee";
-import Modal from "./pages/Modal";
+import Modal from "./base/Modal";
 import {useSelector} from "react-redux";
 
 const App = () => {

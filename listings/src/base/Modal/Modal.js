@@ -6,7 +6,7 @@ import {updateCampaign} from "../../actions/campaignActions";
 import {ModalDataType} from "../../constants";
 
 const Modal = (props) => {
-  const [input, setInput] = useState(props.title);
+  const [input, setInput] = useState(props.meta?.title);
   const dispatch = useDispatch();
   if (props.showModal) {
     return (
@@ -19,17 +19,17 @@ const Modal = (props) => {
               role="button"
               className={styles.modal}
           >
-            <input onChange={e => setInput(e.target.value)} defaultValue={props.title} />
-            <div>
-              <button onClick={() => {
+            <input className={styles.input} onChange={e => setInput(e.target.value)} defaultValue={props.meta?.title} />
+            <div className={styles.actionsContainer}>
+              <button className={styles.cancelButton} onClick={() => dispatch(toggleModal(false))}>Cancel</button>
+              <button className={styles.saveButton} onClick={() => {
                 if (ModalDataType.CAMPAIGN) {
-                  dispatch(updateCampaign(props.pageNumber, props.index, input));
+                  dispatch(updateCampaign(props.meta?.pageNumber, props.meta?.index, input));
                 } else {
                   dispatch();
                 }
                 dispatch(toggleModal(false));
               }}>Save</button>
-              <button onClick={() => dispatch(toggleModal(false))}>Cancel</button>
             </div>
           </div>
         </div>

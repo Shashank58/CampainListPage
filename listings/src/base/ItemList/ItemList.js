@@ -1,6 +1,7 @@
 import React from "react";
 import ItemRow from "../../atoms/ItemRow";
 import styles from "./ItemList.module.scss";
+import {ModalDataType} from "../../constants";
 
 const ItemList = (props) => {
   const { payload, pageNumber, header, deleteAction, dataType, validKeys } = props;
@@ -18,7 +19,7 @@ const ItemList = (props) => {
                     data={item}
                     validKeys={validKeys}
                     dataType={dataType}
-                    meta={{title: item[0], index, pageNumber}}
+                    meta={{title: dataType === ModalDataType.CAMPAIGN ? item.company : item.first_name, index, pageNumber}}
                     deleteAction={deleteAction}
                 />
                 );
