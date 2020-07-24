@@ -1,19 +1,12 @@
 import Api from "../api";
 import {ActionType} from "./types";
 
-const setEmployees = (data, totalPages, employeeIdList) => {
-  const employeeIds = employeeIdList ? employeeIdList : [];
-  if (!employeeIdList) {
-    data.forEach((item) => {
-      employeeIds.push(item.id);
-    });
-  }
+const setEmployees = (data, totalPages) => {
   const pages = Array.from({length: totalPages}, (x, i) => i + 1);
   return {
     type: ActionType.EMPLOYEE_DETAILS,
     payload: {
       employees: data,
-      employeeIds,
       totalPages,
       pages,
     }
@@ -28,14 +21,19 @@ export const getEmployees = (pageNumber) => {
   }
 }
 
-export const updateEmployee = (userId, updatedEmployee) => {
-
+export const updateEmployee = (userId, updatedEmployee, updatedEmployees, totalPages) => {
+  updatedEmployees.find(employee => employee.id === userId).first_name = updatedEmployee.first_name;
+  return (dispatch) => {
+    Api.put(`users/${userId}`, updatedEmployee)
+        .then(res => dispatch(setEmployees(updatedEmployees, totalPages)))
+        .catch(error => console.log(error));
+  }
 }
 
-export const deleteEmployee = (userId, pageNumber, updatedEmployees, employeeIds, totalPages) => {
+export const deleteEmployee = (userId, pageNumber, updatedEmployees, totalPages) => {
   return (dispatch) => {
     Api.delete(`users/${userId}`)
-        .then(res => dispatch(setEmployees(updatedEmployees, totalPages, employeeIds)))
+        .then(res => dispatch(setEmployees(updatedEmployees, totalPages)))
         .catch(error => console.log(error))
   };
 }

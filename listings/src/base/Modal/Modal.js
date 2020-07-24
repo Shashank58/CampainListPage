@@ -4,6 +4,7 @@ import {useDispatch} from "react-redux";
 import {toggleModal} from "../../actions/baseAction";
 import {updateCampaign} from "../../actions/campaignActions";
 import {ModalDataType} from "../../constants";
+import {updateEmployee} from "../../actions/employeeAction";
 
 const Modal = (props) => {
   const [input, setInput] = useState(props.meta?.title);
@@ -23,10 +24,10 @@ const Modal = (props) => {
             <div className={styles.actionsContainer}>
               <button className={styles.cancelButton} onClick={() => dispatch(toggleModal(false))}>Cancel</button>
               <button className={styles.saveButton} onClick={() => {
-                if (ModalDataType.CAMPAIGN) {
+                if (props.dataType === ModalDataType.CAMPAIGN) {
                   dispatch(updateCampaign(props.meta?.pageNumber, props.meta?.index, input));
                 } else {
-                  dispatch();
+                  dispatch(updateEmployee(props.meta?.id, { first_name: input, }, props.meta?.employees, props.meta?.totalPages));
                 }
                 dispatch(toggleModal(false));
               }}>Save</button>

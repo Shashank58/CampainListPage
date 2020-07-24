@@ -25,11 +25,11 @@ const EmployeeList = () => {
     setPageNumber(pageNumber);
   };
   const deleteAction = (pageNumber, index) => {
-    const employeeId = employees.payload?.employeeIds[index];
+    const employeeId = employees.payload?.employees[index].id;
     const updatedEmployees = [...employees.payload?.employees];
     updatedEmployees.splice(index, 1);
     const pagesLength = employees.payload?.pages?.length;
-    dispatch(deleteEmployee(employeeId, pageNumber, updatedEmployees, employees.payload?.employeeIds, pagesLength));
+    dispatch(deleteEmployee(employeeId, pageNumber, updatedEmployees, pagesLength));
   };
   return (
       <div className={styles.container}>
@@ -38,6 +38,7 @@ const EmployeeList = () => {
           <ItemList
               payload={employees.payload?.employees}
               pageNumber={pageNumber}
+              totalPages={employees.payload?.pages?.length}
               header={header}
               validKeys={["first_name", "last_name", "email", "actions"]}
               dataType={ModalDataType.EMPLOYEE}

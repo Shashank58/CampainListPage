@@ -4,7 +4,7 @@ import styles from "./ItemList.module.scss";
 import {ModalDataType} from "../../constants";
 
 const ItemList = (props) => {
-  const { payload, pageNumber, header, deleteAction, dataType, validKeys } = props;
+  const { payload, pageNumber, header, deleteAction, dataType, validKeys, totalPages } = props;
   if (payload && payload.length) {
     return (
         <table className={styles.container}>
@@ -19,10 +19,10 @@ const ItemList = (props) => {
                     data={item}
                     validKeys={validKeys}
                     dataType={dataType}
-                    meta={{title: dataType === ModalDataType.CAMPAIGN ? item.company : item.first_name, index, pageNumber}}
+                    meta={{title: dataType === ModalDataType.CAMPAIGN ? item.company : item.first_name, index, employees: payload, pageNumber, totalPages, id: item.id}}
                     deleteAction={deleteAction}
                 />
-                );
+            );
           })}
         </table>
     );
