@@ -5,8 +5,14 @@ import styles from "./EmployeeList.module.scss";
 import ItemList from "../../base/ItemList";
 import Pagination from "../../atoms/Pagination";
 import {deleteEmployee, getEmployees} from "../../actions/employeeAction";
+import {ModalDataType} from "../../constants";
 
-const header = ["First Name", "Last Name", "Email", "Actions"];
+const header = {
+  "email": "Email",
+  "first_name": "First Name",
+  "last_name": "Last Name",
+  "actions": "Actions"
+};
 
 const EmployeeList = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -33,6 +39,8 @@ const EmployeeList = () => {
               payload={employees.payload?.employees}
               pageNumber={pageNumber}
               header={header}
+              validKeys={["first_name", "last_name", "email", "actions"]}
+              dataType={ModalDataType.EMPLOYEE}
               deleteAction={deleteAction}
           />
           <Pagination

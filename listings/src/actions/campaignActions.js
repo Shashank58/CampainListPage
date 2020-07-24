@@ -8,13 +8,10 @@ export const getCampaigns = (pageNumber) => {
   const end = start + 10;
   const totalItems = campaignData.length;
   const pages = Array.from({length: Math.ceil(totalItems / 10)}, (x, i) => i + 1);
-  const data = [];
-  campaignData.slice(start, end).forEach((item) => data.push([item.company, item.name, item.type]));
-  console.log(data);
   return {
     type: ActionType.CAMPAIGN_DETAILS,
     payload: {
-      campaigns: data,
+      campaigns: campaignData.slice(start, end),
       totalItems: totalItems + " items",
       pages,
     }
@@ -24,6 +21,12 @@ export const getCampaigns = (pageNumber) => {
 export const deleteCampaign = (pageNumber, index) => {
   const dataIndex = (index) * pageNumber;
   campaignData.splice(dataIndex, 1);
+  return getCampaigns(pageNumber);
+}
+
+export const updateCampaign = (pageNumber, index, updatedCompany) => {
+  const dataIndex = (index) * pageNumber;
+  campaignData[dataIndex].company = updatedCompany;
   return getCampaigns(pageNumber);
 }
 

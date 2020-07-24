@@ -6,8 +6,14 @@ import {deleteCampaign, getCampaigns, searchCampaigns} from "../../actions/campa
 import ItemList from "../../base/ItemList";
 import Pagination from "../../atoms/Pagination";
 import styles from "./CampaignList.module.scss";
+import {ModalDataType} from "../../constants";
 
-const header = ["Company", "Type", "Name", "Actions"];
+const header = {
+  company: "Company",
+  type: "Type",
+  name: "Name",
+  actions: "Actions",
+};
 
 const CampaignList = () => {
   const dispatch = useDispatch();
@@ -36,6 +42,8 @@ const CampaignList = () => {
               payload={campaigns.payload?.campaigns}
               pageNumber={pageNumber}
               header={header}
+              validKeys={["company", "type", "name", "actions"]}
+              dataType={ModalDataType.CAMPAIGN}
               deleteAction={deleteAction}
           />
           <Pagination

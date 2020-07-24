@@ -1,8 +1,8 @@
-import React, {useRef, useState} from 'react';
+import React from 'react';
 import styles from './Header.module.scss';
 import {useHistory} from "react-router";
 
-const Header = (props) => {
+const Header = () => {
   const history = useHistory();
   const location = history.location.pathname;
   const onRouteChanged = (route) => {

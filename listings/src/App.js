@@ -1,27 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.scss';
-import Index from "./base/Header";
+import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
+import CampaignList from "./pages/campaigns";
+import EmployeeList from "./pages/employee";
+import Modal from "./pages/Modal";
+import {useSelector} from "react-redux";
 
-function App() {
+const App = () => {
+  const base = useSelector(state => state.base);
+  console.log("Base", base);
   return (
-    <div>
-      <Index />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+        <Router>
+          <Switch>
+            <Redirect exact from="/" to="/campaign"/>
+            <Route path="/campaign" component={CampaignList}/>
+            <Route path="/employee" component={EmployeeList}/>
+          </Switch>
+        </Router>
+        <Modal {...base.payload} />
+      </div>
   );
 }
 
