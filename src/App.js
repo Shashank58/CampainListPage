@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.scss';
 import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
 import CampaignList from "./pages/campaigns";
 import EmployeeList from "./pages/employee";
@@ -8,7 +7,6 @@ import {useSelector} from "react-redux";
 
 const App = () => {
   const base = useSelector(state => state.base);
-  console.log("Base", base);
   return (
       <div>
         <Router>
